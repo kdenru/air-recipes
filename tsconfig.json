@@ -6,6 +6,9 @@
     "sourceMap": true,
     "outDir": "./dist/",
     "module": "commonjs",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "lib": ["es6", "dom"],
+    "noImplicitThis": true,
+    "strictNullChecks": true
   }
 }
