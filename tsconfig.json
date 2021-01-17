@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "module": "commonjs",
+    "noImplicitAny": true
+  }
+}
