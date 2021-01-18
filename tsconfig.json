@@ -9,6 +9,13 @@
     "noImplicitAny": true,
     "lib": ["es6", "dom"],
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "api/*": ["src/api/*"],
+      "store/*": ["src/store/*"],
+      "assets/*": ["src/assets/*"],
+      "features/*": ["src/features/*"],
+      "components/*": ["src/components/*"]
+    }
   }
 }
