@@ -1,20 +1,14 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-
-import {
-  Box,
-  Typography,
-  TextField,
-  makeStyles,
-  withStyles,
-  InputAdornment,
-  Icon,
-} from "@material-ui/core";
+import { Formik, Form, Field } from "formik";
 
 import SearchIcon from "@material-ui/icons/Search";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import { Box, Typography, makeStyles, InputAdornment } from "@material-ui/core";
 
 import bg from "assets/image.png";
+import TextInput from "components/ui/textInput";
 import { fetchRecipes } from "features/recipes/slice";
 
 const useStyles = makeStyles(() => ({
@@ -48,35 +42,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const TextInput = withStyles({
-  root: {
-    "& .MuiOutlinedInput-root": {
-      width: 276,
+interface Props {
+  setQuery: (query: string) => void;
+}
 
-      "& fieldset": {
-        borderRadius: 28,
-        borderColor: "#dddddd",
-        transition: "all 0.25s ease",
-      },
-      "&:hover fieldset": {
-        borderColor: "#dddddd",
-      },
-      "&.Mui-focused fieldset": {
-        borderWidth: 1,
-        borderColor: "#a9a9a9",
-      },
-    },
-  },
-})(TextField);
+interface FormValues {
+  query: string;
+}
 
-const Header: React.FunctionComponent = () => {
+const Header: React.FunctionComponent<Props> = ({ setQuery }: Props) => {
+  const styles = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchRecipes());
   }, []);
 
-  const styles = useStyles();
   return (
     <Box className={styles.container}>
       <Box className={styles.content}>
@@ -86,22 +67,39 @@ const Header: React.FunctionComponent = () => {
         <Typography className={styles.tagline}>
           Best Recipes for Best People
         </Typography>
-        <TextInput
-          id="search"
-          type="text"
-          variant="outlined"
-          placeholder="Search"
-          className={styles.search}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Icon aria-label="toggle password visibility">
-                  <SearchIcon className={styles.searchIcon} />
-                </Icon>
-              </InputAdornment>
-            ),
+        <Formik
+          initialValues={{ query: "" }}
+          onSubmit={(values: FormValues) => {
+            setQuery(values.query);
           }}
-        />
+        >
+          {({ resetForm, submitCount }) => (
+            <Form>
+              <Field
+                id="search"
+                type="text"
+                name="query"
+                disabled={false}
+                variant="outlined"
+                placeholder="Search"
+                component={TextInput}
+                className={styles.search}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon className={styles.searchIcon} />
+                    </InputAdornment>
+                  ),
+                  endAdornment: submitCount > 0 && (
+                    <InputAdornment position="end">
+                      <HighlightOffIcon onClick={() => resetForm()} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Form>
+          )}
+        </Formik>
       </Box>
     </Box>
   );

@@ -19,7 +19,5 @@ type Cuisine = {
 };
 
 export type FetchRecipesPayload = {
-  data: {
-    recipes: Recipe[];
-  };
+  recipes: Recipe[];
 };
