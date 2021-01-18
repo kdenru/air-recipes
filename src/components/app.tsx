@@ -1,10 +1,23 @@
 import * as React from "react";
-import { Container } from "@material-ui/core";
 
+import { Container, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  container: {
+    padding: 0,
+  },
+}));
+
+import Header from "./header";
 import "./app.styl";
 
 const App: React.FunctionComponent = () => {
-  return <Container maxWidth="lg">hello</Container>;
+  const styles = useStyles();
+  return (
+    <Container maxWidth="lg" className={styles.container}>
+      <Header />
+    </Container>
+  );
 };
 
 export default App;
