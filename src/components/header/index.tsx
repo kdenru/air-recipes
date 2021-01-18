@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import {
   Box,
   Typography,
@@ -9,9 +12,10 @@ import {
   Icon,
 } from "@material-ui/core";
 
-import bg from "../../assets/image.png";
-
 import SearchIcon from "@material-ui/icons/Search";
+
+import bg from "assets/image.png";
+import { fetchRecipes } from "features/recipes/slice";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -66,6 +70,12 @@ const TextInput = withStyles({
 })(TextField);
 
 const Header: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecipes());
+  }, []);
+
   const styles = useStyles();
   return (
     <Box className={styles.container}>
