@@ -20,7 +20,6 @@ const useStyles = makeStyles({
   card: {
     width: 348,
     height: 384,
-    marginBottom: 24,
   },
   cardAction: {
     height: "100%",

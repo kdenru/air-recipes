@@ -7,9 +7,10 @@ const ApplyButton = withStyles((theme: Theme) => ({
     "&:hover": {
       backgroundColor: "#82786A",
     },
-    lineHeight: "16px",
     letterSpacing: 1.25,
     padding: "10px 15px",
+    marginLeft: "auto",
+    height: 36,
   },
 }))(Button);
 

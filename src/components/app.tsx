@@ -8,18 +8,25 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+import { Filter } from "components/typings";
+
 import Header from "components/header";
 import RecipesList from "components/recipesList";
 import "./app.styl";
 
 const App: React.FunctionComponent = () => {
   const styles = useStyles();
-  const [query, setQuery] = useState("");
+
+  const [filter, setFilter] = useState<Filter>({
+    query: "",
+    range: [100, 1200],
+    cuisines: [1, 2, 3, 4, 5],
+  });
 
   return (
     <Container maxWidth="lg" className={styles.container}>
-      <Header setQuery={setQuery} />
-      <RecipesList query={query} />
+      <Header filter={filter} setFilter={setFilter} />
+      <RecipesList filter={filter} />
     </Container>
   );
 };

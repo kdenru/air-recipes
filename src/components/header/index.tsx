@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FormikProps } from "formik";
 
 import SearchIcon from "@material-ui/icons/Search";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -20,6 +20,7 @@ import TextInput from "components/textInput";
 import FilterModal from "components/filterModal";
 
 import { fetchRecipes } from "features/recipes/slice";
+import { Filter } from "components/typings";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -64,19 +65,23 @@ const useStyles = makeStyles(() => ({
   input: {
     paddingLeft: 12,
   },
+  clear: {
+    cursor: "pointer",
+  },
 }));
 
 interface Props {
-  setQuery: (query: string) => void;
+  filter: Filter;
+  setFilter: (values: Filter) => void;
 }
 
-interface FormValues {
-  query: string;
-}
-
-const Header: React.FunctionComponent<Props> = ({ setQuery }: Props) => {
+const Header: React.FunctionComponent<Props> = ({
+  filter,
+  setFilter,
+}: Props) => {
   const styles = useStyles();
   const dispatch = useDispatch();
+  const [showClear, setShowClear] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -101,43 +106,59 @@ const Header: React.FunctionComponent<Props> = ({ setQuery }: Props) => {
           Best Recipes for Best People
         </Typography>
         <Formik
-          initialValues={{ query: "" }}
-          onSubmit={(values: FormValues) => {
-            setQuery(values.query);
+          initialValues={filter}
+          onSubmit={(values: Filter) => {
+            setShowClear(true);
+            setFilter(values);
           }}
         >
-          {({ resetForm, submitCount }) => (
-            <Form className={styles.form}>
-              <Field
-                id="search"
-                type="text"
-                name="query"
-                disabled={false}
-                variant="outlined"
-                placeholder="Search"
-                component={TextInput}
-                InputProps={{
-                  classes: {
-                    input: styles.input,
-                  },
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon className={styles.searchIcon} />
-                    </InputAdornment>
-                  ),
-                  endAdornment: submitCount > 0 && (
-                    <InputAdornment position="end">
-                      <HighlightOffIcon onClick={() => resetForm()} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <IconButton className={styles.filterButton} onClick={handleOpen}>
-                <FilterListIcon />
-              </IconButton>
-              <FilterModal open={showModal} onClose={handleClose} />
-            </Form>
-          )}
+          {(props: FormikProps<Filter>) => {
+            return (
+              <Form className={styles.form}>
+                <Field
+                  id="search"
+                  type="text"
+                  name="query"
+                  disabled={false}
+                  variant="outlined"
+                  placeholder="Search"
+                  component={TextInput}
+                  InputProps={{
+                    classes: {
+                      input: styles.input,
+                    },
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon className={styles.searchIcon} />
+                      </InputAdornment>
+                    ),
+                    endAdornment: showClear && (
+                      <InputAdornment position="end">
+                        <HighlightOffIcon
+                          className={styles.clear}
+                          onClick={() => {
+                            props.setFieldValue("query", "");
+                            setShowClear(false);
+                          }}
+                        />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <IconButton
+                  className={styles.filterButton}
+                  onClick={handleOpen}
+                >
+                  <FilterListIcon />
+                </IconButton>
+                <FilterModal
+                  formik={props}
+                  open={showModal}
+                  onClose={handleClose}
+                />
+              </Form>
+            );
+          }}
         </Formik>
       </Box>
     </Box>
