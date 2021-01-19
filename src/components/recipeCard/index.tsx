@@ -41,15 +41,21 @@ const useStyles = makeStyles({
     position: "absolute",
   },
   chip: {
-    marginLeft: 8,
-    background: "#ffffff",
+    marginLeft: 9,
     color: "#000000",
+    background: "#ffffff",
+    letterSpacing: "normal",
+  },
+  chipLabel: {
+    padding: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: 800,
     marginBottom: 8,
     lineHeight: "28px",
+    letterSpacing: "normal",
+    fontFamily: "Gilroy ExtraBold",
   },
   description: {
     fontSize: 16,
@@ -57,6 +63,7 @@ const useStyles = makeStyles({
     lineHeight: "24px",
     overflow: "hidden",
     display: "-webkit-box",
+    letterSpacing: "normal",
     "-webkit-line-clamp": 4,
     "-webkit-box-orient": "vertical",
   },
@@ -81,9 +88,27 @@ const RecipeCard: React.FunctionComponent<Props> = ({ recipe }: Props) => {
             image={recipe.thumbnail}
           />
           <Box className={styles.chips}>
-            <Chip className={styles.chip} label={formatTime(recipe.cookTime)} />
-            <Chip className={styles.chip} label={`${recipe.caloricity} kCal`} />
-            <Chip className={styles.chip} label={recipe.cuisine.title} />
+            <Chip
+              className={styles.chip}
+              classes={{
+                label: styles.chipLabel,
+              }}
+              label={formatTime(recipe.cookTime)}
+            />
+            <Chip
+              className={styles.chip}
+              classes={{
+                label: styles.chipLabel,
+              }}
+              label={`${recipe.caloricity} kCal`}
+            />
+            <Chip
+              className={styles.chip}
+              classes={{
+                label: styles.chipLabel,
+              }}
+              label={recipe.cuisine.title}
+            />
           </Box>
         </Box>
         <CardContent className={styles.content}>

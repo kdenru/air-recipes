@@ -13,7 +13,7 @@ export type Recipe = {
   description: string;
 };
 
-type Cuisine = {
+export type Cuisine = {
   id: number;
   title: string;
 };

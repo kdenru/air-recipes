@@ -20,6 +20,10 @@ const config: webpack.Configuration = {
           name: "[name].[ext]",
         },
       },
+      {
+        test: /\.(eot|woff|woff2|ttf)$/,
+        use: ["file-loader"],
+      },
     ],
   },
 };
