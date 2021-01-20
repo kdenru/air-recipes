@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Formik, Form, Field, FormikProps } from "formik";
 
 import SearchIcon from "@material-ui/icons/Search";
@@ -19,7 +18,6 @@ import bg from "assets/image.png";
 import TextInput from "components/textInput";
 import FilterModal from "components/filterModal";
 
-import { fetchRecipes } from "features/recipes/slice";
 import { Filter } from "components/typings";
 
 const useStyles = makeStyles(() => ({
@@ -80,13 +78,8 @@ const Header: React.FunctionComponent<Props> = ({
   setFilter,
 }: Props) => {
   const styles = useStyles();
-  const dispatch = useDispatch();
   const [showClear, setShowClear] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchRecipes());
-  }, []);
 
   const handleOpen = () => {
     setShowModal(true);

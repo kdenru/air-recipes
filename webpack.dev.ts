@@ -10,6 +10,7 @@ const config: webpack.Configuration = merge(common, {
   mode: "development",
   entry: "./src/index.tsx",
   output: {
+    publicPath: "/",
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
   },
@@ -24,6 +25,7 @@ const config: webpack.Configuration = merge(common, {
   devtool: "source-map",
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
