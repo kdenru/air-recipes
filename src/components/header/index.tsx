@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import { Formik, Form, Field, FormikProps } from "formik";
 
 import SearchIcon from "@material-ui/icons/Search";
@@ -23,15 +23,46 @@ import { Filter } from "components/typings";
 
 const useStyles = makeStyles(() => ({
   container: {
+    top: 0,
+    width: 1280,
+    position: "fixed",
     height: 600,
-    overflow: "auto",
+    zIndex: 1,
+    overflow: "visibility",
     backgroundImage: `url(${bg})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "right",
+    backgroundColor: "#ffffff",
+    transition: "all .5s ease",
+    "& + div": {
+      paddingTop: 728,
+      transition: "all .5s ease",
+    },
+    // height: 292,
+    // "& + div": {
+    //   paddingTop: 420,
+    // },
+  },
+  spacer: {
+    width: "100%",
+    height: 50,
+    margin: "0 auto",
+    backgroundColor: " #ffffff",
+    position: "absolute",
+    bottom: -50,
+    zIndex: 1,
+  },
+  scrolledContainer: {
+    height: 292,
+    "& + div": {
+      paddingTop: 420,
+    },
   },
   content: {
+    zIndex: 2,
     marginTop: 128,
     marginLeft: 98,
+    position: "relative",
   },
   title: {
     fontSize: 64,
@@ -80,8 +111,17 @@ const Header: React.FunctionComponent<Props> = ({
 }: Props) => {
   const styles = useStyles();
   const history = useHistory();
+  const [scrolled, setScrolled] = useState(false);
   const [showClear, setShowClear] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollListener);
+  });
+
+  const scrollListener = useCallback(() => {
+    setScrolled(window.scrollY > 0);
+  }, []);
 
   const handleOpen = () => {
     setShowModal(true);
@@ -92,7 +132,9 @@ const Header: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Box className={styles.container}>
+    <Box
+      className={`${styles.container} ${scrolled && styles.scrolledContainer}`}
+    >
       <Box className={styles.content}>
         <Typography className={styles.title} component="h1">
           Air Recipes
@@ -103,7 +145,9 @@ const Header: React.FunctionComponent<Props> = ({
         <Formik
           initialValues={filter}
           onSubmit={(values: Filter) => {
-            setShowClear(true);
+            if (values.query !== "") {
+              setShowClear(true);
+            }
             setFilter(values);
             history.push("/");
           }}
@@ -128,7 +172,7 @@ const Header: React.FunctionComponent<Props> = ({
                         <SearchIcon className={styles.searchIcon} />
                       </InputAdornment>
                     ),
-                    endAdornment: showClear && (
+                    endAdornment: showClear && props.touched.query && (
                       <InputAdornment position="end">
                         <HighlightOffIcon
                           className={styles.clear}
@@ -157,6 +201,7 @@ const Header: React.FunctionComponent<Props> = ({
           }}
         </Formik>
       </Box>
+      {scrolled && <Box className={styles.spacer} />}
     </Box>
   );
 };
