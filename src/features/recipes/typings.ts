@@ -1,7 +1,7 @@
 export type RecipesState = {
   list: Recipe[];
   loading: boolean;
-  recipe: Recipe | null;
+  recipe: RecipeDetails | null;
 };
 
 export type Recipe = {
@@ -12,6 +12,13 @@ export type Recipe = {
   thumbnail: string;
   caloricity: number;
   description: string;
+};
+
+export type RecipeDetails = Recipe & {
+  images: string[];
+  difficulty: string;
+  ingredients: string[];
+  instructions: string[];
 };
 
 export type Cuisine = {
@@ -28,5 +35,5 @@ export type FetchRecipesPayload = {
 };
 
 export type FetchRecipesDetailsPayload = {
-  recipe: Recipe;
+  recipe: RecipeDetails;
 };

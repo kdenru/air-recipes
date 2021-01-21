@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 25 24.9" style="enable-background:new 0 0 25 24.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;filter:url(#Adobe_OpacityMaskFilter);}
+	.st1{mask:url(#path-1-inside-1_1_);}
+</style>
+<defs>
+	<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="25" height="24.9">
+		<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+	</filter>
+</defs>
+<mask maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="24.9" id="path-1-inside-1_1_">
+	<path class="st0" d="M7.42,4.89C8.24,2.9,10.21,1.5,12.5,1.5c2.29,0,4.26,1.4,5.08,3.39c0.31-0.06,0.64-0.09,0.97-0.09
+		c2.73,0,4.95,2.22,4.95,4.95c0,2.16-1.38,3.99-3.3,4.67v8.98H4.8v-8.98c-1.92-0.68-3.3-2.51-3.3-4.67c0-2.73,2.22-4.95,4.95-4.95
+		C6.78,4.8,7.1,4.83,7.42,4.89z"/>
+</mask>
+<path class="st1" d="M7.42,4.89L7.13,6.37L8.33,6.6L8.8,5.47L7.42,4.89z M17.58,4.89L16.2,5.47l0.47,1.14l1.21-0.24L17.58,4.89z
+	 M20.2,14.42L19.7,13l-1,0.35v1.06H20.2z M20.2,23.4v1.5h1.5v-1.5H20.2z M4.8,23.4H3.3v1.5h1.5V23.4z M4.8,14.42h1.5v-1.06L5.3,13
+	L4.8,14.42z M8.8,5.47C9.41,4.02,10.84,3,12.5,3V0C9.58,0,6.6,2.36,5.55,4.89L8.8,5.47z M12.5,3c1.66,0,3.09,1.02,3.7,2.47
+	l2.77-1.15C17.92,1.79,15.42,0,12.5,0V3z M17.87,6.37c0.22-0.04,0.44-0.07,0.68-0.07v-3c-0.43,0-0.85,0.04-1.26,0.12L17.87,6.37z
+	 M18.55,6.3C20.46,6.3,22,7.84,22,9.75h3c0-3.56-2.89-6.45-6.45-6.45V6.3z M22,9.75c0,1.5-0.96,2.78-2.3,3.25l1,2.83
+	c2.5-0.88,4.3-3.27,4.3-6.08H22z M18.7,14.42v8.98h3v-8.98H18.7z M20.2,21.9H4.8v3h15.4V21.9z M6.3,23.4v-8.98h-3v8.98H6.3z M5.3,13
+	C3.96,12.53,3,11.25,3,9.75H0c0,2.81,1.8,5.2,4.3,6.08L5.3,13z M3,9.75C3,7.84,4.54,6.3,6.45,6.3v-3C2.89,3.3,0,6.19,0,9.75H3z
+	 M6.45,6.3c0.23,0,0.46,0.02,0.68,0.07l2.14-2.43C8.86,3.85,6.88,3.3,6.45,3.3V6.3z"/>
+<rect x="5.5" y="16.75" width="14" height="1.5"/>
+</svg>

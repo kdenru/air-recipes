@@ -13,6 +13,7 @@
     "paths": {
       "api/*": ["src/api/*"],
       "store/*": ["src/store/*"],
+      "utils/*": ["src/utils/*"],
       "assets/*": ["src/assets/*"],
       "features/*": ["src/features/*"],
       "components/*": ["src/components/*"]

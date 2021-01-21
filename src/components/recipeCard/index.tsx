@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardActionArea,
@@ -10,6 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import { formatTime } from "utils/index";
 import { Recipe } from "features/recipes/typings";
 
 interface Props {
@@ -17,6 +19,9 @@ interface Props {
 }
 
 const useStyles = makeStyles({
+  link: {
+    textDecoration: "none",
+  },
   card: {
     width: 348,
     height: 384,
@@ -68,58 +73,55 @@ const useStyles = makeStyles({
   },
 });
 
-const formatTime = (seconds: number): string => {
-  const minutes = seconds / 60;
-  return minutes >= 60 ? `${minutes / 60} hours` : `${minutes} min`;
-};
-
 const RecipeCard: React.FunctionComponent<Props> = ({ recipe }: Props) => {
   const styles = useStyles();
   return (
-    <Card className={styles.card} elevation={1}>
-      <CardActionArea className={styles.cardAction}>
-        <Box className={styles.topSection}>
-          <CardMedia
-            height="196"
-            component="img"
-            alt={recipe.title}
-            title={recipe.title}
-            image={recipe.thumbnail}
-          />
-          <Box className={styles.chips}>
-            <Chip
-              className={styles.chip}
-              classes={{
-                label: styles.chipLabel,
-              }}
-              label={formatTime(recipe.cookTime)}
+    <Link className={styles.link} to={`/recipe/${recipe.id}`}>
+      <Card className={styles.card} elevation={1}>
+        <CardActionArea className={styles.cardAction}>
+          <Box className={styles.topSection}>
+            <CardMedia
+              height="196"
+              component="img"
+              alt={recipe.title}
+              title={recipe.title}
+              image={recipe.thumbnail}
             />
-            <Chip
-              className={styles.chip}
-              classes={{
-                label: styles.chipLabel,
-              }}
-              label={`${recipe.caloricity} kCal`}
-            />
-            <Chip
-              className={styles.chip}
-              classes={{
-                label: styles.chipLabel,
-              }}
-              label={recipe.cuisine.title}
-            />
+            <Box className={styles.chips}>
+              <Chip
+                className={styles.chip}
+                classes={{
+                  label: styles.chipLabel,
+                }}
+                label={formatTime(recipe.cookTime)}
+              />
+              <Chip
+                className={styles.chip}
+                classes={{
+                  label: styles.chipLabel,
+                }}
+                label={`${recipe.caloricity} kCal`}
+              />
+              <Chip
+                className={styles.chip}
+                classes={{
+                  label: styles.chipLabel,
+                }}
+                label={recipe.cuisine.title}
+              />
+            </Box>
           </Box>
-        </Box>
-        <CardContent className={styles.content}>
-          <Typography className={styles.title} component="h2">
-            {recipe.title}
-          </Typography>
-          <Typography className={styles.description} component="p">
-            {recipe.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+          <CardContent className={styles.content}>
+            <Typography className={styles.title} component="h2">
+              {recipe.title}
+            </Typography>
+            <Typography className={styles.description} component="p">
+              {recipe.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Link>
   );
 };
 

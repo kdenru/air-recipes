@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kdenru/air-recipes#readme",
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@types/axios": "^0.14.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

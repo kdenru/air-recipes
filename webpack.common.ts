@@ -14,7 +14,7 @@ const config: webpack.Configuration = {
         use: ["ts-loader", "eslint-loader"],
       },
       {
-        test: /\.(png|jpe?g|svg)$/,
+        test: /\.(png|jpe?g)$/,
         loader: "url-loader",
         options: {
           name: "[name].[ext]",
@@ -23,6 +23,10 @@ const config: webpack.Configuration = {
       {
         test: /\.(eot|woff|woff2|ttf)$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
       },
     ],
   },
