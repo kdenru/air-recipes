@@ -13,6 +13,7 @@ import CaloriesIcon from "assets/caloriesIcon.svg";
 import CuisineIcon from "assets/cuisineIcon.svg";
 
 import { formatTime } from "utils/index";
+import Slider from "components/slider";
 
 const useStyles = makeStyles({
   container: {
@@ -67,10 +68,6 @@ const useStyles = makeStyles({
   },
   section: {
     marginTop: 33,
-  },
-  image: {
-    height: 355,
-    width: "100%",
   },
   bullet: {
     marginRight: 5,
@@ -207,7 +204,7 @@ const RecipeDetails: React.FunctionComponent = () => {
           </Box>
         </Box>
         <Box>
-          <img className={styles.image} src={recipe.images[0]} />
+          <Slider images={recipe.images} />
         </Box>
       </Box>
     )

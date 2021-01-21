@@ -17,7 +17,7 @@ const config: webpack.Configuration = merge(common, {
   module: {
     rules: [
       {
-        test: /\.styl$/,
+        test: /\.styl|css$/,
         use: ["style-loader", "css-loader", "stylus-loader"],
       },
     ],
