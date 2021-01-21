@@ -27,7 +27,11 @@ export const fetchRecipeDetails = createAsyncThunk<
 const recipesSlice = createSlice({
   initialState,
   name: "recipes",
-  reducers: {},
+  reducers: {
+    clearRecipe(state) {
+      state.recipe = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipes.pending, (state) => {
@@ -54,4 +58,5 @@ const recipesSlice = createSlice({
   },
 });
 
+export const { clearRecipe } = recipesSlice.actions;
 export default recipesSlice.reducer;

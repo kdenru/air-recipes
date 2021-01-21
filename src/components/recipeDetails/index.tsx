@@ -12,6 +12,7 @@ import TimeIcon from "assets/timeIcon.svg";
 import CaloriesIcon from "assets/caloriesIcon.svg";
 import CuisineIcon from "assets/cuisineIcon.svg";
 
+import { clearRecipe } from "features/recipes/slice";
 import { formatTime } from "utils/index";
 import Slider from "components/slider";
 
@@ -138,6 +139,9 @@ const RecipeDetails: React.FunctionComponent = () => {
 
   useEffect(() => {
     dispatch(fetchRecipeDetails({ recipeId: Number(recipeId) }));
+    return () => {
+      dispatch(clearRecipe());
+    };
   }, [recipeId]);
 
   return (

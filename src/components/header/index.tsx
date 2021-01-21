@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, FormikProps } from "formik";
 
 import SearchIcon from "@material-ui/icons/Search";
@@ -78,6 +79,7 @@ const Header: React.FunctionComponent<Props> = ({
   setFilter,
 }: Props) => {
   const styles = useStyles();
+  const history = useHistory();
   const [showClear, setShowClear] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -103,6 +105,7 @@ const Header: React.FunctionComponent<Props> = ({
           onSubmit={(values: Filter) => {
             setShowClear(true);
             setFilter(values);
+            history.push("/");
           }}
         >
           {(props: FormikProps<Filter>) => {
